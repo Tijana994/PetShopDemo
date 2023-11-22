@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/PetShopDemo/src-gen" creationIcons="false" editDirectory="/PetShopDemo.edit/src-gen"
+    editorDirectory="/PetShopDemo.editor/src-gen" modelPluginID="PetShopDemo" modelName="PetShopDemo"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="20.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>petShopDemo.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="PetShopDemo" disposableProviderFactory="true" ecorePackage="petShopDemo.ecore#/">
+    <genClasses ecoreClass="petShopDemo.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="petShopDemo.ecore#//Company">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference petShopDemo.ecore#//Company/shops"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference petShopDemo.ecore#//Company/owner"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference petShopDemo.ecore#//Company/offers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference petShopDemo.ecore#//Company/customers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference petShopDemo.ecore#//Company/employees"/>
+    </genClasses>
+    <genClasses ecoreClass="petShopDemo.ecore#//Shop">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Shop/location"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference petShopDemo.ecore#//Shop/activeOffers"/>
+    </genClasses>
+    <genClasses ecoreClass="petShopDemo.ecore#//Principal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Principal/location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Principal/date"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Principal/birtday"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Principal/email"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Principal/number"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Principal/approval"/>
+    </genClasses>
+    <genClasses ecoreClass="petShopDemo.ecore#//Product">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Product/description"/>
+    </genClasses>
+    <genClasses ecoreClass="petShopDemo.ecore#//Offer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference petShopDemo.ecore#//Offer/product"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
