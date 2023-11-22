@@ -18,6 +18,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference petShopDemo.ecore#//Company/offers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference petShopDemo.ecore#//Company/customers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference petShopDemo.ecore#//Company/employees"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference petShopDemo.ecore#//Company/products"/>
     </genClasses>
     <genClasses ecoreClass="petShopDemo.ecore#//Shop">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Shop/location"/>
@@ -35,7 +36,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Product/description"/>
     </genClasses>
     <genClasses ecoreClass="petShopDemo.ecore#//Offer">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference petShopDemo.ecore#//Offer/product"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference petShopDemo.ecore#//Offer/products"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Offer/isMembersOnly"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Offer/price"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Offer/from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Offer/to"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute petShopDemo.ecore#//Offer/isActive"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

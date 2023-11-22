@@ -5,4 +5,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:petShopDemo="http://petShopDemo"
     xsi:schemaLocation="http://petShopDemo petShopDemo.ecore"
-    name="Loki"/>
+    name="Loki">
+  <offers price="2000.0"
+      from="2020-10-25T01:00:00.000+0200"/>
+  <customers
+      name="Tommo"
+      approval="true"/>
+</petShopDemo:Company>

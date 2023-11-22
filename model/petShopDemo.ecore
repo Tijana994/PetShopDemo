@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="petShopDemo" nsURI="http://petShopDemo" nsPrefix="petShopDemo">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+    <details key="ecore.xml.type" value="http://www.eclipse.org/emf/2003/XMLType"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Company" eSuperTypes="#//NamedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="UniqueShopName UniqueCustomerName UniqueEmployeesName UniqueOfferName"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="UniqueShopName" value="Tuple {&#xA;&#x9;message : String = 'Shop name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.shops->forAll(shop1:Shop,shop2:Shop| shop1.name = shop2.name implies shop1 = shop2)&#xA;}.status"/>
+      <details key="UniqueCustomerName" value="Tuple {&#xA;&#x9;message : String = 'Customer name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.customers->forAll(customer1:Principal,customer2:Principal| customer1.name = customer2.name implies customer1 = customer2)&#xA;}.status"/>
+      <details key="UniqueEmployeesName" value="Tuple {&#xA;&#x9;message : String = 'Employe name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.employees->forAll(employee1:Principal,employee2:Principal| employee1.name = employee2.name implies employee1 = employee2)&#xA;}.status"/>
+      <details key="UniqueOfferName" value="Tuple {&#xA;&#x9;message : String = 'Offer name is unique',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;self.offers->forAll(offer1:Offer,offer2:Offer| offer1.name = offer2.name implies offer1 = offer2)&#xA;}.status"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="shops" upperBound="-1"
         eType="#//Shop" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//Principal"/>
@@ -14,6 +32,8 @@
         eType="#//Principal" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="employees" upperBound="-1"
         eType="#//Principal" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
+        eType="#//Product" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Shop" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" lowerBound="1"
@@ -28,13 +48,26 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="email" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="approval" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Product" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Offer" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="product" upperBound="-1"
-        eType="#//Product" containment="true"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="NeedApprovalForNotification"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="NeedApprovalForNotification" value="&#xA;&#x9;&#x9;&#x9;if(self.from = null) then&#xA;&#x9;&#x9;&#x9;&#x9;false&#xA;&#x9;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;let company : Company = Company.allInstances()->asSequence()->first() in&#xA;&#x9;&#x9;&#x9;company.customers->exists(customer|customer.name= 'Tommo' and customer.approval)&#xA;&#x9;&#x9;&#x9;endif"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="products" upperBound="-1"
+        eType="#//Product"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isMembersOnly" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="price" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="from" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="to" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isActive" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
 </ecore:EPackage>
