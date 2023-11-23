@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="PetShopExample/lib/petshopDSLjar.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/PetShopDemo/petshopDSL.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="/BankProject/static-manifest.txt" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
+        <javaElement handleIdentifier="=PetShopDemo/src-gen"/>
+        <file path="/PetShopDemo/.gitattributes"/>
+        <file path="/PetShopDemo/plugin.xml"/>
+        <file path="/PetShopDemo/.classpath"/>
+        <file path="/PetShopDemo/plugin.properties"/>
+        <file path="/PetShopDemo/README.md"/>
+        <folder path="/PetShopDemo/META-INF"/>
+    </selectedElements>
+</jardesc>
